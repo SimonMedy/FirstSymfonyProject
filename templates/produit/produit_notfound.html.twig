@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Produit Not Found
+{% endblock %}
+
+{% block body %}
+	<div class="container ms-4 mt-4">
+		<h5>Produit non trouvé ...</h5>
+		<div class="mt-3">
+			<button type="button" class="btn btn-primary" onclick="window.location.href='{{path('app_produits')}}'">Retourner aux produits</button>
+		</div>
+        <div class="mt-3">
+			<button type="button" class="btn btn-outline-primary" onclick="window.location.href='{{path('app_home')}}'">Retourner à l'accueil</button>
+		</div>
+	</div>
+{% endblock %}

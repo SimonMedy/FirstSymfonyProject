@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container ms-4 mt-4">
+		Categorie ID Trouvé
+		<text>{{dump(id)}}</text>
+
+		{{form_start(form)}}
+		<table class="table table-hover">
+			<thead>
+				<tr class="table-primary">
+					<th scope="col">ID</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Description</th>
+					<th scope="col">Image</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr class="table-secondary">
+					<th scope="row">{{categorie.id}}</th>
+					<td>{{form_widget(form.nom)}}</td>
+					<td>{{form_widget(form.description)}}</td>
+					<td>{{categorie.image}}<br/><text class="text-primary">{{form_widget(form.image)}}</text>
+					</td>
+					<td>
+						{{form_widget(form.submit, { 'label': 'Sauvegarder' }) }}&nbsp;&nbsp;&nbsp;
+						<a class="btn btn-primary mt-2" href="{{path('deleteCategorie',{id:categorie.id})}}">Supprimer</button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+		{{form_end(form)}}
+
+		<div class="mt-4">
+			<h5 class="text-primary">Image actuelle de la catégorie :</h5>
+			<img style="width:300px;" src="{{ asset('uploadedImages/' ~ categorie.image) }}">
+		</div>
+
+		<div class="mt-4">
+			{{dump(categorie)}}
+		</div>
+
+	</div>
+{% endblock %}

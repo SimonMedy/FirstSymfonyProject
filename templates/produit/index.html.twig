@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block title %}ProduitController
+{% endblock %}
+
+{% block body %}
+	{{form_start(form)}}
+	<div class="container mt-2">
+		{{form_errors(form)}}
+		<div class="mt-2">
+			{{form_label(form.nom)}}<text class="text-primary">*</text><br>
+			{{form_widget(form.nom)}}
+		</div>
+		<div class="mt-2">
+			{{form_label(form.description)}}<text class="text-primary">*</text><br>
+			{{form_widget(form.description)}}
+		</div>
+		<div class="mt-2">
+			{{form_label(form.prix)}}<text class="text-primary">*</text><br>
+			{{form_widget(form.prix)}}
+		</div>
+		<div class="mt-2">
+			{{form_label(form.quantity)}}<text class="text-primary">*</text><br>
+			{{form_widget(form.quantity)}}
+		</div>
+		<div class="mt-2">
+			{{form_label(form.Categorie)}}<text class="text-primary">*</text><br>
+			{{form_widget(form.Categorie)}}
+		</div>
+		<div class="mt-2">
+			{{form_widget(form.submit, { 'label': 'Envoyer' }) }}
+		</div>
+	</div>
+
+	<div class="container ms-4 mt-4">
+		<div class="container ms-4 mt-4">
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-primary">
+						<th scope="col">ID</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Description</th>
+						<th scope="col">Prix</th>
+						<th scope="col">Quantité</th>
+						<th scope="col">Categorie</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for produit in produits %}
+						{{form_start(form)}}
+						<tr class="table-secondary">
+							<th scope="row">
+								<a href="{{path("produit",{id:produit.id})}}" style="text-decoration: none">{{produit.id}}</a>
+							</th>
+							<td>{{produit.nom}}</td>
+							<td>{{produit.description}}</td>
+							<td>{{produit.prix}}</td>
+							<td>{{produit.quantity}}</td>
+							<td>
+								<a href="{{path("categorie",{id:produit.categorie.id})}}" style="text-decoration: none; font-weight:bold">{{produit.categorie.nom}}</a>
+							</td>
+						</tr>
+						
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<br>
+	</div>
+	{{form_end(form)}}
+{% endblock %}

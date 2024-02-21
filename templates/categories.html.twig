@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container ms-4 mt-4">
+		<form class="d-flex">
+			<input class="form-control me-sm-2" type="search" placeholder="ID ..." style="width: 200px">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>
+	{{form_start(form)}}
+	<div class="container ms-4 mt-4">
+
+		<div class="container mt-2">
+
+			{{form_errors(form)}}
+			<div class="mt-2">
+				{{form_label(form.nom)}}<text class="text-primary">*</text><br>
+				{{form_widget(form.nom)}}
+			</div>
+
+			<div class="mt-2">
+				{{form_label(form.description)}}<text class="text-primary">*</text><br>
+				{{form_widget(form.description)}}
+			</div>
+
+			<div class="mt-2">
+				{{form_label(form.image)}}<br/>
+				<text class="text-primary">{{form_widget(form.image)}}</text>
+			</div>
+
+			<div class="mt-3">
+				{{form_widget(form.submit, { 'label': 'Envoyer' }) }}
+			</div>
+			
+		</div>
+
+		<div class="container mt-4">
+			<table class="table table-hover">
+				<thead>
+					<tr class="table-primary">
+						<th scope="col">ID</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Description</th>
+						<th scope="col">Image file</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for categorie in categories %}
+						<tr class="table-secondary">
+							<th scope="row">
+								<a href="{{path("categorie",{id:categorie.id})}}" style="text-decoration: none">{{categorie.id}}</a>
+							</th>
+							<td>{{categorie.nom}}</td>
+							<td>{{categorie.description}}</td>
+							<td>{{categorie.image}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<br>
+		{{form_end(form)}}
+
+		{{dump(categories)}}
+	</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Produit detail
+{% endblock %}
+
+{% block body %}
+	<div class="container ms-4 mt-4">
+		Produit ID Trouvé
+		<text>{{dump(produit.id)}}</text>
+
+		<table class="table table-hover">
+			<thead>
+				<tr class="table-primary">
+					<th scope="col">ID</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Description</th>
+					<th scope="col">Prix</th>
+					<th scope="col">Quantité</th>
+					<th scope="col">Categorie</th>
+                    <th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{form_start(form)}}
+				<tr class="table-secondary">
+					<th scope="row">{{produit.id}}</th>
+					<td>{{form_widget(form.nom)}}</td>
+					<td>{{form_widget(form.description)}}</td>
+					<td>{{form_widget(form.prix)}}</td>
+					<td>{{form_widget(form.quantity)}}</td>
+					<td>{{form_widget(form.Categorie)}}</td>
+					<td>
+						{{form_widget(form.submit, { 'label': 'Sauvegarder' }) }}
+					</td>
+				</tr>
+				{{form_end(form)}}
+			</tbody>
+		</table>
+
+		<div class="mt-4">
+			<a class="btn btn-primary" href="{{path('deleteProduit',{id:produit.id})}}">Supprimer le produit</a>
+		</div>
+
+		<div class="mt-4">
+			{{dump(produit)}}
+		</div>
+
+	</div>
+{% endblock %}
